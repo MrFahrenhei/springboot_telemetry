@@ -18,12 +18,12 @@ services:
       - telemetry_network
 
   postgres:
-    image: postgres:18-apline
+    image: postgres:18-alpine
     container_name: telemetry-db
     restart: always
     shm_size: 128mb
     ports:
-      - "5432:5423"
+      - "5432:5432"
     command: ["postgres", "-c", "shared_preload_libraries=pg_stat_statements"]
     volumes:
       - postgres_data:/var/lib/postgresql
@@ -63,13 +63,13 @@ services:
     container_name: telemetry-prometheus
     restart: unless-stopped
     volumes:
-      - ./docker/prometheus/prometheus.dev.yml:etc/prometheus/prometheus.yml
+      - ./docker/prometheus/prometheus.dev.yml:/etc/prometheus/prometheus.yml
     ports:
       - "9090:9090"
     depends_on:
       - postgres-exporter
     networks:
-      - telemetry_networks
+      - telemetry_network
 
   grafana:
     image: grafana/grafana:latest

@@ -21,13 +21,15 @@ public class ApiKeyInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull Object handler){
         String requestApiKey = request.getHeader(API_KEY_HEADER);
+        if (requestApiKey == null || requestApiKey.trim().isEmpty()) {
+            log.warn("API key is missing in the request header");
+            throw new UnauthorizedException("API key is required");
+        }
 
-        if(requestApiKey == null || requestApiKey.trim().isEmpty())
-        {
+        if (!configuredApiKey.equals(requestApiKey)) {
             log.warn("Provided API key is invalid");
             throw new UnauthorizedException("Invalid API key");
         }
-
         log.debug("API key validated successfully");
         return true;
     }

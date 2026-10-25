@@ -33,7 +33,7 @@ public class Telemetry {
     @Column(name = "disk_total_gb", nullable = false)
     private Double diskTotalGb;
 
-    @Column(name = "disk_used_db", nullable = false)
+    @Column(name = "disk_used_gb", nullable = false)
     private Double diskUsageGb;
 
     @Column(name = "system_uptime_seconds", nullable = false)
