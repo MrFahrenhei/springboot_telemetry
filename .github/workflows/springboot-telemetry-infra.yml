@@ -1,11 +1,11 @@
-name: telemetry-infra
+name: springboot-telemetry-infra
 
 on:
   push:
     branches: [main]
     paths:
       - 'docker/**'
-      - '.github/workflows/telemetry-infra.yml'
+      - 'springboot-telemetry-infra.yml'
 
 jobs:
   build-and-deploy:

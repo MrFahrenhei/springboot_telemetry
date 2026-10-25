@@ -9,7 +9,7 @@ datasources:
     uid: prometheus
     editable: false
 
-  - name: PostgrSQL_Telemetry
+  - name: PostgreSQL_Telemetry
     type: postgres
     uid: postgresql_telemetry
     access: proxy
@@ -21,4 +21,4 @@ datasources:
       database: ${POSTGRES_DATABASE}
       sslmode: '${POSTGRES_SSLMODE}'
       postgresVersion: 1800
-    editable: false
+    editable: falsee

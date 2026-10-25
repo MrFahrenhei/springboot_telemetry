@@ -1,14 +1,16 @@
-name: telemetry-api
+name: springboot-telemetry-api
+
 on:
   push:
     branches: [main]
     paths:
       - 'src/**'
-      - 'build.gradle'
-      - 'settings.gradle'
+      - 'build.gradle*'
+      - 'settings.gradle*'
       - 'gradle/**'
       - 'Dockerfile'
-      - '.github/workflows/telemetry-api.yml'
+      - 'springboot-telemetry-api.yml'
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -44,8 +46,8 @@ jobs:
           context: .
           push: true
           tags: |
-              ${{ secrets.DOCKERHUB_USERNAME }}/telemetry-api:latest
-              ${{ secrets.DOCKERHUB_USERNAME }}/telemetry-api:${{ github.sha }}
+            ${{ secrets.DOCKERHUB_USERNAME }}/telemetry-api:latest
+            ${{ secrets.DOCKERHUB_USERNAME }}/telemetry-api:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
